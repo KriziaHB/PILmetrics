@@ -54,7 +54,9 @@ def readImage(choice):
 
     im = Image.open(picture)
     # im.show()
-
+    width = int(im.size[0])
+    length = int(im.size[1])
+    print("Length: " + str(length) + " - Width: " + str(width))
 
     return(im)
 # end of readImage #
@@ -66,7 +68,8 @@ def Measurements(im, pilQ):
     print("In Measurements")
     # all the pixels in order to compare
     OrigPixels = im.load()
-    qPixels = pilQ.load()
+    rgb_im = pilQ.convert('RGB')
+    qPixels = rgb_im.load()
     width = int(pilQ.size[0])
     length = int(pilQ.size[1])
     s = 0
@@ -78,6 +81,8 @@ def Measurements(im, pilQ):
             # find distance between the two
             a = OrigPixels[x, y]
             b = qPixels[x, y]
+        #    print(a)
+        #    print(b)
 
             # find distance between the two points
             red = a[0] - b[0]
